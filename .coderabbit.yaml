@@ -1,13 +1,21 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: en-US
+
 reviews:
-  profile: balanced
+  profile: chill                # ← 'balanced' をやめて 'chill'（または 'assertive'）
   high_level_summary: true
   auto_review:
     enabled: true
     drafts: false
+  # どのファイルをレビュー対象にするか（上から順に評価）
   path_filters:
-    - "!node_modules/"
-    - "!**/*.map"
+    - "**/*"                    # まずは全部含める
+    - "!node_modules/"          # 除外
+    - "!**/*.map"               # 除外
+    # --- 必要なら下のコメントを外す ---
+    # - "public/**/*.png"       # 画像もレビューさせたい場合に明示的に含める
+    # - "package-lock.json"     # lockfile の変更もレビューさせたい場合に含める
+
 tools:
   eslint:
     enabled: true
